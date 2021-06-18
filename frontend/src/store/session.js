@@ -10,6 +10,7 @@ const setUser = (user) => {
   };
 };
 
+//  action creators
 const removeUser = () => {
   return {
     type: REMOVE_USER,
@@ -37,6 +38,7 @@ export const restoreUser = () => async (dispatch) => {
   return response;
 };
 
+// thunk action creator
 export const signup = (user) => async (dispatch) => {
   const { username, email, password } = user;
   const response = await csrfFetch("/api/users", {
@@ -52,6 +54,7 @@ export const signup = (user) => async (dispatch) => {
   return response;
 };
 
+// Thunk action creator
 export const logout = () => async (dispatch) => {
   const response = await csrfFetch("/api/session", {
     method: "DELETE",
