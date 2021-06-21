@@ -3,10 +3,15 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { getDrinks } from '../../store/drinks';
 
-const DrinksCard = () => {
+import './DrinksCard.css'
+
+const DrinksCard = ({ name, imageUrl, description }) => {
     return (
-        <div>
-            Card
+        <div className='card'>
+            <div className='card_body'>
+                <h5>{name}</h5>
+                <span>{description}</span>
+            </div>
         </div>
     )
 }

@@ -1,0 +1,9 @@
+.drinks_container {
+    width: 97vw;
+    height: 90vh;
+    background-color: white;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+}

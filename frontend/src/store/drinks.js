@@ -11,10 +11,8 @@ const setDrinks = (drinks) => ({
 
 // Define Thunks
 export const getDrinks = () => async (dispatch) => {
-  console.log("We got here");
   const res = await csrfFetch("/api/drinks/");
   const drinks = await res.json();
-  console.log(drinks);
   dispatch(setDrinks(drinks));
 };
 
@@ -29,7 +27,6 @@ const drinksReducer = (state = initialState, action) => {
       action.drinks.forEach((drink) => {
         allDrinks[drink.id] = drink;
       });
-      console.log(allDrinks);
       return {
         ...state,
         ...allDrinks,
