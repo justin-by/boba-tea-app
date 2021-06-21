@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 
 import * as sessionActions from './store/session'
+import * as drinkActions from './store/drinks'
 
 import { ModalProvider } from './context/Modal';
 import { Provider } from 'react-redux';
@@ -22,6 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.csrfFetch = csrfFetch;
   window.store = store;
   window.sessionActions = sessionActions;
+  window.drinkActions = drinkActions;
 }
 
 function Root() {
