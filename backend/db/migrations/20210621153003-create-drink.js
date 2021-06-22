@@ -14,18 +14,17 @@ module.exports = {
       },
       storeId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
       },
       name: {
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING(20),
         allowNull: false,
         unique: true,
       },
       imageUrl: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(200),
       },
       description: {
-        type: Sequelize.STRING(400),
+        type: Sequelize.STRING(100),
       },
       createdAt: {
         allowNull: false,
