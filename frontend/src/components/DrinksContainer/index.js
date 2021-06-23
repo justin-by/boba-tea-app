@@ -13,12 +13,12 @@ const DrinksContainer = () => {
   // Declare variables from hooks
   const dispatch = useDispatch();
   const drinks = useSelector((state) => Object.values(state.drink));
-  console.log(drinks)
 
 
   useEffect(() => {
     dispatch(getDrinks());
   }, [dispatch]);
+
 
   return (
     <div className="drinks_container">
@@ -26,11 +26,15 @@ const DrinksContainer = () => {
         <DrinksCard
           key={drink.id}
           name={drink.name}
-          image={drink.imageUrl}
+          imageUrl={drink.imageUrl}
           description={drink.description}
+          drinkId={drink.id}
+          userId={drink.userId}
         />
       )}
     </div>
+
+
   );
 };
 

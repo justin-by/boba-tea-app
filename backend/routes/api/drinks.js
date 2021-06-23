@@ -9,7 +9,6 @@ const { Drink } = require('../../db/models')
 // Create the API route
 router.get('/', asyncHandler(async(req, res) => {
     const drinks = await Drink.findAll();
-    console.log(drinks[0].dataValues.userId)
     return res.json(drinks)
 }));
 
@@ -33,4 +32,19 @@ router.delete('/:id', requireAuth, asyncHandler(async(req, res) => {
     }
     )
 }))
+
+router.put('/:id', requireAuth, asyncHandler(async(req, res) => {
+    const drinkId = req.params.id
+    const drink = await Drink.findByPk(drinkId)
+    if (drink.dataValues.userId !== req.user.id) throw new Error('Unauthorized')
+    if (!drink) throw new Error('Cannot find drink')
+
+    await Drink.update(req.body, {
+        where: {
+            id: drinkId,
+            userId: req.user.id
+        }
+    })
+}))
+
 module.exports = router;
