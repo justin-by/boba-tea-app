@@ -22,6 +22,8 @@ module.exports = {
       },
       imageUrl: {
         type: Sequelize.STRING(200),
+        allowNull: true,
+        defaultValue: 'https://www.abhimaan.biz/uploads/product_images/empty-img.png'
       },
       description: {
         type: Sequelize.STRING(100),

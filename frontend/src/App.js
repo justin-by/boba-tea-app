@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import DrinksContainer from "./components/DrinksContainer";
 import AddDrinkButton from "./components/AddDrinkButton";
+import DrinkPage from "./components/DrinkPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,8 +26,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/">
-            <DrinksContainer />
-            <AddDrinkButton />
+            <DrinkPage />
           </Route>
         </Switch>
 
