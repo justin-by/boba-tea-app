@@ -2,9 +2,9 @@ import { csrfFetch } from "./csrf";
 
 // Define Action Types
 const SET_DRINKS = "drinks/SET_DRINKS";
-const ADD_DRINK = 'drinks/ADD_DRINK';
-const REMOVE_DRINK = 'drinks/REMOVE_DRINK'
-const UPDATE_DRINK = 'drinks/UPDATE_DRINK'
+const ADD_DRINK = "drinks/ADD_DRINK";
+const REMOVE_DRINK = "drinks/REMOVE_DRINK";
+const UPDATE_DRINK = "drinks/UPDATE_DRINK";
 
 // Define Action Creators
 const setDrinks = (drinks) => ({
@@ -14,19 +14,18 @@ const setDrinks = (drinks) => ({
 
 const addDrink = (drink) => ({
   type: ADD_DRINK,
-  drink
-})
+  drink,
+});
 
 const removeDrink = (drink) => ({
   type: REMOVE_DRINK,
-  drink
-})
+  drink,
+});
 
-const updateDrink = (drink, drinkPayload) => ({
+const updateDrink = (drink) => ({
   type: UPDATE_DRINK,
   drink,
-  drinkPayload
-})
+});
 
 // Define Thunks
 export const getDrinks = () => async (dispatch) => {
@@ -36,39 +35,39 @@ export const getDrinks = () => async (dispatch) => {
 };
 
 export const createDrink = (drinkPayload) => async (dispatch) => {
-  const res = await csrfFetch('/api/drinks', {
-    method: 'POST',
+  const res = await csrfFetch("/api/drinks", {
+    method: "POST",
     body: JSON.stringify(drinkPayload),
-    headers: {'Content-Type': 'application/json'}
+    headers: { "Content-Type": "application/json" },
   });
 
   if (res.ok) {
     const drink = await res.json();
-    dispatch(addDrink(drink))
+    dispatch(addDrink(drink));
   }
-}
+};
 
 export const deleteDrink = (drinkId) => async (dispatch) => {
   const res = await csrfFetch(`/api/drinks/${drinkId}`, {
-    method: "DELETE"
-  })
+    method: "DELETE",
+  });
   if (res.ok) {
     const drink = await res.json();
-    dispatch(removeDrink(drink))
+    dispatch(removeDrink(drink));
   }
-}
+};
 
 export const editDrink = (drinkId, drinkPayload) => async (dispatch) => {
   const res = await csrfFetch(`/api/drinks/${drinkId}`, {
     method: "PUT",
     body: JSON.stringify(drinkPayload),
-    headers: {'Content-Type':'application/json'}
-  })
+    headers: { "Content-Type": "application/json" },
+  });
   if (res.ok) {
     const drink = await res.json();
-    dispatch(updateDrink(drink, drinkPayload))
+    dispatch(updateDrink(drink));
   }
-}
+};
 
 // Define an initial state
 const initialState = {};
@@ -88,16 +87,20 @@ const drinksReducer = (state = initialState, action) => {
     case ADD_DRINK:
       return {
         ...state,
-        [action.drink.id]: action.drink
-      }
+        [action.drink.id]: action.drink,
+      };
     case REMOVE_DRINK:
-      const newState = {...state}
+      const newState = { ...state };
       delete newState[action.drink.id];
       return newState;
     case UPDATE_DRINK:
-      return {
-        ...state,
-        [action.drink.id]: action.drink,
+      const newState1 = { ...state };
+      if (newState1[action.drink.id]) {
+        delete newState1[action.drink.id];
+        return {
+          ...newState1,
+          [action.drink.id]: action.drink,
+        };
       }
     default:
       return state;

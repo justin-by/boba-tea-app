@@ -17,6 +17,7 @@ const ReviewsContainer = ({ drinkId }) => {
         imageUrl={review.imageUrl}
         userId={review.userId}
         username={review.User.username}
+        reviewId={review.id}
         />
       ))}
     </div>

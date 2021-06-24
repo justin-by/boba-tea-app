@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 // description
 import "./AddDrinkForm.css";
 
-const AddDrinkForm = ({ type, drinkId }) => {
+const AddDrinkForm = ({ type, drinkId, setShowModal }) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [name, setName] = useState("");
@@ -37,17 +37,20 @@ const AddDrinkForm = ({ type, drinkId }) => {
       errors,
     };
 
-    if (imageUrl === '') {
-      drinkPayload.imageUrl = 'https://www.abhimaan.biz/uploads/product_images/empty-img.png';
+    if (imageUrl === "") {
+      drinkPayload.imageUrl =
+        "https://www.abhimaan.biz/uploads/product_images/empty-img.png";
     }
 
-    if (errors.length === 0 && type === "create") {
-      dispatch(drinkActions.createDrink(drinkPayload));
-    } else {
-    // } else if (errors.length === 0 && type === 'update) {
-      dispatch(drinkActions.editDrink(drinkId, drinkPayload));
-
+    if (errors.length === 0 && type === "update") {
+      const editDrink = dispatch(drinkActions.editDrink(drinkId, drinkPayload));
+      if (editDrink) setShowModal(false);
+    } else if (errors.length === 0) {
+      const newDrink = dispatch(drinkActions.createDrink(drinkPayload));
+      if (newDrink) setShowModal(false);
     }
+
+
   };
 
   return (

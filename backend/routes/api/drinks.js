@@ -31,6 +31,7 @@ router.delete('/:id', requireAuth, asyncHandler(async(req, res) => {
         }
     }
     )
+    return res.json(drink)
 }))
 
 router.put('/:id', requireAuth, asyncHandler(async(req, res) => {
@@ -45,6 +46,7 @@ router.put('/:id', requireAuth, asyncHandler(async(req, res) => {
             userId: req.user.id
         }
     })
+    return res.json(drink);
 }))
 
 module.exports = router;

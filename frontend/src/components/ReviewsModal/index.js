@@ -2,22 +2,22 @@ import React, { useEffect, useState } from "react";
 import * as reviewActions from "../../store/reviews";
 import { useDispatch, useSelector } from "react-redux";
 
-import './ReviewsModal.css'
+import "./ReviewsModal.css";
 
 const ReviewsModal = ({ drinkId }) => {
-  const sessionUser = useSelector((state) => state.session.user)
+  const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const [comment, setComment] = useState("");
-  const [rating, setRating] = useState();
+  const [rating, setRating] = useState(1);
   const [imageUrl, setImageUrl] = useState("");
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     let errors = [];
-    if (comment.length > 200) errors.push('Review must be less than 200 characters')
-    setErrors(errors)
-
-  }, [comment])
+    if (comment.length > 200)
+      errors.push("Review must be less than 200 characters");
+    setErrors(errors);
+  }, [comment]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,10 +29,10 @@ const ReviewsModal = ({ drinkId }) => {
       comment,
       rating,
       imageUrl,
-      errors
+    };
+    if (errors.length === 0) {
+      dispatch(reviewActions.createReview(reviewPayload));
     }
-
-    dispatch(reviewActions.createReview(reviewPayload))
   };
   // id
   // userId
@@ -41,38 +41,62 @@ const ReviewsModal = ({ drinkId }) => {
   // rating
   // imageurl
   return (
-    <form className='review_form' onSubmit={handleSubmit}>
+    <form className="review_form" onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
-        Rating
-        <input
-          type="number"
+        <div className='review_stars'>
+          <span
           value={rating}
-          onChange={(e) => setRating(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Comment
+          onClick={(e) => setRating(1)}>
+            {rating && rating >= 1 ?
+            <i className="fas fa-star"></i> :
+            <i className="far fa-star"></i>}
+          </span>
+          <span
+          value={rating}
+          onClick={(e) => setRating(2)}>
+            {rating && rating >= 2 ?
+            <i className="fas fa-star"></i> :
+            <i className="far fa-star"></i>}
+          </span>
+          <span
+          value={rating}
+          onClick={(e) => setRating(3)}>
+            {rating && rating >= 3 ?
+            <i className="fas fa-star"></i> :
+            <i className="far fa-star"></i>}
+          </span>
+          <span
+          value={rating}
+          onClick={(e) => setRating(4)}>
+            {rating && rating >= 4 ?
+            <i className="fas fa-star"></i> :
+            <i className="far fa-star"></i>}
+          </span>
+          <span
+          value={rating}
+          onClick={(e) => setRating(5)}>
+            {rating && rating === 5 ?
+            <i className="fas fa-star"></i> :
+            <i className="far fa-star"></i>}
+          </span>
+        </div>
         <input
+          placeholder='Comment'
           type="text"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
         />
-      </label>
-      <label>
-        Image URL
         <input
+          placeholder='Optional Image URL'
           type="text"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
         />
-      </label>
-      <button type="submit">Submit</button>
+      <button disabled={errors.length === 0 ? false : true} type="submit" className='review_submit_button'>Submit</button>
     </form>
   );
 };

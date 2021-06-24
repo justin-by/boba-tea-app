@@ -1,9 +1,10 @@
 .review {
    width: 500px;
    box-sizing: border-box;
-   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
+   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
    padding: 20px;
    margin: 15px 30px;
+
 }
 .review_header {
     display: flex;
@@ -19,4 +20,10 @@
 
 .review_comment span{
     color: gray
+}
+
+.review_footer {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
 }

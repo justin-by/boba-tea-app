@@ -27,30 +27,35 @@ const DrinksCard = ({ name, imageUrl, description, drinkId, userId}) => {
         </div>
       </div>
       <div className="card_reviews">
-        <button onClick={() => setShowModal2(true)}>Reviews</button>
+        <button onClick={() => setShowModal2(true)}>
+          <i className="fas fa-star"></i>
+        </button>
         {showModal2 && (
           <Modal onClose={() => setShowModal2(false)}>
             <ReviewsContainer drinkId={drinkId}/>
             <ReviewsModal drinkId={drinkId} />
           </Modal>
         )}
-        <button
-          hidden={sessionUser && sessionUser.id === userId ? false : true}
-          onClick={() => setShowModal(true)}
-        >
-          Update
-        </button>
-        {showModal && (
-          <Modal onClose={() => setShowModal(false)}>
-            <AddDrinkForm type="create" drinkId={drinkId} />
-          </Modal>
-        )}
-        <button
-          hidden={sessionUser && sessionUser.id === userId ? false : true}
-          onClick={() => dispatch(drinkActions.deleteDrink(drinkId))}
-        >
-          Delete
-        </button>
+        <div className='card_edit_delete'>
+          <button
+            hidden={sessionUser && sessionUser.id === userId ? false : true}
+            onClick={() => setShowModal(true)}
+          >
+            <i className="fas fa-cog group2"></i>
+          </button>
+          {showModal && (
+            <Modal onClose={() => setShowModal(false)}>
+              <AddDrinkForm setShowModal={setShowModal} type="update" drinkId={drinkId} />
+            </Modal>
+          )}
+          <button
+            hidden={sessionUser && sessionUser.id === userId ? false : true}
+            onClick={() => dispatch(drinkActions.deleteDrink(drinkId))}
+          >
+            <i className="fas fa-trash"></i>
+          </button>
+        </div>
+
       </div>
     </div>
   );

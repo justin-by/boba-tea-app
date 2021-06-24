@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 // Define Action Types
 const SET_REVIEWS = "reviews/SET_REVIEWS";
 const ADD_REVIEW = "reviews/ADD_REVIEW";
+const REMOVE_REVIEW = "reviews/REMOVE_REVIEW";
 // const REMOVE_DRINK = 'reviews/REMOVE_DRINK'
 // const UPDATE_DRINK = 'reviews/UPDATE_DRINK'
 
@@ -14,6 +15,11 @@ const setReviews = (reviews) => ({
 
 const addReview = (review) => ({
   type: ADD_REVIEW,
+  review,
+});
+
+const removeReview = (review) => ({
+  type: REMOVE_REVIEW,
   review,
 });
 
@@ -41,10 +47,19 @@ export const createReview = (reviewPayload) => async (dispatch) => {
     body: JSON.stringify(reviewPayload),
     headers: { "Content-Type": "application/json" },
   });
-
   if (res.ok) {
     const review = await res.json();
     dispatch(addReview(review));
+  }
+};
+
+export const deleteReview = (reviewId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+    method: "DELETE",
+  });
+  if (res.ok) {
+    const review = await res.json();
+    dispatch(removeReview(review));
   }
 };
 
@@ -90,15 +105,10 @@ const reviewsReducer = (state = initialState, action) => {
         ...state,
         [action.review.id]: action.review,
       };
-    // case REMOVE_DRINK:
-    //   const newState = {...state}
-    //   delete newState[action.drink.id];
-    //   return newState;
-    // case UPDATE_DRINK:
-    //   return {
-    //     ...state,
-    //     [action.drink.id]: action.drink,
-    //   }
+    case REMOVE_REVIEW:
+      const newState = { ...state };
+      delete newState[action.review.id];
+      return newState;
     default:
       return state;
   }
