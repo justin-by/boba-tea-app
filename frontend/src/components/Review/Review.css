@@ -27,3 +27,26 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.review_img_container_center {
+    display: flex;
+    justify-content: center;
+}
+
+.review_img_container {
+    margin-top: 25px;
+    width: 300px;
+    height: 150px;
+    border-radius: 20px 20px 20px 20px;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+}
+
+.review_img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  display: block;
+  border-radius: 20px 20px 20px 20px;
+
+  /* border-radius: 20px 20px 0 0; */
+}

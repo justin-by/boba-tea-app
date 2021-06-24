@@ -15,36 +15,54 @@ const Review = ({ username, comment, rating, imageUrl, userId, reviewId }) => {
           <span>{username}</span>
         </div>
         <div className="review_rating">
-        <span>
-            {rating && rating >= 1 ?
-            <i className="fas fa-star"></i> :
-            <i className="far fa-star"></i>}
+          <span>
+            {rating && rating >= 1 ? (
+              <i className="fas fa-star"></i>
+            ) : (
+              <i className="far fa-star"></i>
+            )}
           </span>
           <span>
-            {rating && rating >= 2 ?
-            <i className="fas fa-star"></i> :
-            <i className="far fa-star"></i>}
+            {rating && rating >= 2 ? (
+              <i className="fas fa-star"></i>
+            ) : (
+              <i className="far fa-star"></i>
+            )}
           </span>
           <span>
-            {rating && rating >= 3 ?
-            <i className="fas fa-star"></i> :
-            <i className="far fa-star"></i>}
+            {rating && rating >= 3 ? (
+              <i className="fas fa-star"></i>
+            ) : (
+              <i className="far fa-star"></i>
+            )}
           </span>
           <span>
-            {rating && rating >= 4 ?
-            <i className="fas fa-star"></i> :
-            <i className="far fa-star"></i>}
+            {rating && rating >= 4 ? (
+              <i className="fas fa-star"></i>
+            ) : (
+              <i className="far fa-star"></i>
+            )}
           </span>
           <span>
-            {rating && rating === 5 ?
-            <i className="fas fa-star"></i> :
-            <i className="far fa-star"></i>}
+            {rating && rating === 5 ? (
+              <i className="fas fa-star"></i>
+            ) : (
+              <i className="far fa-star"></i>
+            )}
           </span>
         </div>
       </div>
       <div className="review_comment">
         <span>{comment}</span>
       </div>
+      {imageUrl && (
+        <div className="review_img_container_center">
+          <div className="review_img_container">
+            <img className="review_img" src={imageUrl}></img>
+          </div>
+        </div>
+      )}
+
       <div className="review_footer">
         <div
           className="trash_button_holder"

@@ -27,7 +27,7 @@ module.exports = {
           userId: 1,
           drinkId: 1,
           comment: "Not my favorite.",
-          rating: 2,
+          rating: 0,
         },
       ],
       {}
