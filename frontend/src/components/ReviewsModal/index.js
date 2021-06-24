@@ -52,36 +52,36 @@ const ReviewsModal = ({ drinkId }) => {
           value={rating}
           onClick={(e) => setRating(1)}>
             {rating && rating >= 1 ?
-            <i className="fas fa-star"></i> :
-            <i className="far fa-star"></i>}
+            <i className="fas fa-star fa-star-form"></i> :
+            <i className="far fa-star fa-star-form"></i>}
           </span>
           <span
           value={rating}
           onClick={(e) => setRating(2)}>
             {rating && rating >= 2 ?
-            <i className="fas fa-star"></i> :
-            <i className="far fa-star"></i>}
+            <i className="fas fa-star fa-star-form"></i> :
+            <i className="far fa-star fa-star-form"></i>}
           </span>
           <span
           value={rating}
           onClick={(e) => setRating(3)}>
             {rating && rating >= 3 ?
-            <i className="fas fa-star"></i> :
-            <i className="far fa-star"></i>}
+            <i className="fas fa-star fa-star-form"></i> :
+            <i className="far fa-star fa-star-form"></i>}
           </span>
           <span
           value={rating}
           onClick={(e) => setRating(4)}>
             {rating && rating >= 4 ?
-            <i className="fas fa-star"></i> :
-            <i className="far fa-star"></i>}
+            <i className="fas fa-star fa-star-form"></i> :
+            <i className="far fa-star fa-star-form"></i>}
           </span>
           <span
           value={rating}
           onClick={(e) => setRating(5)}>
             {rating && rating === 5 ?
-            <i className="fas fa-star"></i> :
-            <i className="far fa-star"></i>}
+            <i className="fas fa-star fa-star-form"></i> :
+            <i className="far fa-star fa-star-form"></i>}
           </span>
         </div>
         <input

@@ -15,7 +15,31 @@ const Review = ({ username, comment, rating, imageUrl, userId, reviewId }) => {
           <span>{username}</span>
         </div>
         <div className="review_rating">
-          <span>{rating}</span>
+        <span>
+            {rating && rating >= 1 ?
+            <i className="fas fa-star"></i> :
+            <i className="far fa-star"></i>}
+          </span>
+          <span>
+            {rating && rating >= 2 ?
+            <i className="fas fa-star"></i> :
+            <i className="far fa-star"></i>}
+          </span>
+          <span>
+            {rating && rating >= 3 ?
+            <i className="fas fa-star"></i> :
+            <i className="far fa-star"></i>}
+          </span>
+          <span>
+            {rating && rating >= 4 ?
+            <i className="fas fa-star"></i> :
+            <i className="far fa-star"></i>}
+          </span>
+          <span>
+            {rating && rating === 5 ?
+            <i className="fas fa-star"></i> :
+            <i className="far fa-star"></i>}
+          </span>
         </div>
       </div>
       <div className="review_comment">
