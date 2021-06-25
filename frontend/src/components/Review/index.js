@@ -58,7 +58,7 @@ const Review = ({ username, comment, rating, imageUrl, userId, reviewId }) => {
       {imageUrl && (
         <div className="review_img_container_center">
           <div className="review_img_container">
-            <img className="review_img" src={imageUrl}></img>
+            <img className="review_img" src={imageUrl} alt='review'></img>
           </div>
         </div>
       )}

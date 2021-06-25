@@ -1,0 +1,9 @@
+.login_span {
+    text-decoration: underline;
+    margin-right: 20px;
+}
+
+.login_span:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

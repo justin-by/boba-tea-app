@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 // Define Action Types
+const SET_USER_DRINKS = "drinks/SET_USER_DRINKS";
 const SET_DRINKS = "drinks/SET_DRINKS";
 const ADD_DRINK = "drinks/ADD_DRINK";
 const REMOVE_DRINK = "drinks/REMOVE_DRINK";
@@ -9,6 +10,11 @@ const UPDATE_DRINK = "drinks/UPDATE_DRINK";
 // Define Action Creators
 const setDrinks = (drinks) => ({
   type: SET_DRINKS,
+  drinks,
+});
+
+const setUserDrinks = (drinks) => ({
+  type: SET_USER_DRINKS,
   drinks,
 });
 
@@ -32,6 +38,12 @@ export const getDrinks = () => async (dispatch) => {
   const res = await csrfFetch("/api/drinks/");
   const drinks = await res.json();
   dispatch(setDrinks(drinks));
+};
+
+export const getUserDrinks = (userId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/drinks/users/${userId}`);
+  const drinks = await res.json();
+  dispatch(setUserDrinks(drinks));
 };
 
 export const createDrink = (drinkPayload) => async (dispatch) => {
@@ -70,36 +82,49 @@ export const editDrink = (drinkId, drinkPayload) => async (dispatch) => {
 };
 
 // Define an initial state
-const initialState = {};
+const initialState = {
+  allDrinks: {},
+  userDrinks: {},
+};
 
 // Define a reducer
 const drinksReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_DRINKS:
-      const allDrinks = {};
+      const newState3 = { ...state };
       action.drinks.forEach((drink) => {
-        allDrinks[drink.id] = drink;
+        newState3.allDrinks[drink.id] = drink;
       });
-      return {
-        ...state,
-        ...allDrinks,
-      };
+      return newState3;
+    case SET_USER_DRINKS:
+      const newState2 = { ...state };
+      action.drinks.forEach((drink) => {
+        newState2.userDrinks[drink.id] = drink;
+      });
+      return newState2;
     case ADD_DRINK:
+      const newState4 = { ...state };
+      newState4.allDrinks[action.drink.id] = action.drink;
+      newState4.userDrinks[action.drink.id] = action.drink;
       return {
-        ...state,
-        [action.drink.id]: action.drink,
+        ...newState4,
       };
     case REMOVE_DRINK:
       const newState = { ...state };
-      delete newState[action.drink.id];
-      return newState;
+      delete newState.allDrinks[action.drink.id];
+      delete newState.userDrinks[action.drink.id];
+      return {
+        ...newState,
+      };
     case UPDATE_DRINK:
       const newState1 = { ...state };
-      if (newState1[action.drink.id]) {
-        delete newState1[action.drink.id];
+      if (newState1.allDrinks[action.drink.id]) {
+        delete newState1.allDrinks[action.drink.id];
+        delete newState1.userDrinks[action.drink.id];
+        newState1.allDrinks[action.drink.id] = action.drink;
+        newState1.userDrinks[action.drink.id] = action.drink;
         return {
           ...newState1,
-          [action.drink.id]: action.drink,
         };
       }
     default:
@@ -109,3 +134,14 @@ const drinksReducer = (state = initialState, action) => {
 
 // Export the reducer
 export default drinksReducer;
+
+// EXAMPLE
+// case SET_DRINKS:
+//   const allDrinks = {};
+//   const userDrinks = {};
+//   action.drinks.forEach((drink) => {
+//     allDrinks[drink.id] = drink;
+//   });
+//   return {
+//     allDrinks, userDrinks
+//   };

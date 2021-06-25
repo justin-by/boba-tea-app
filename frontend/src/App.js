@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 // import LoginForm from "./components/LoginFormModal";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import DrinksContainer from "./components/DrinksContainer";
-import AddDrinkButton from "./components/AddDrinkButton";
 import DrinkPage from "./components/DrinkPage";
 
 function App() {
+  const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -25,8 +24,11 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/">
+          <Route exact path="/drinks">
             <DrinkPage />
+          </Route>
+          <Route exact path={`/drinks/users/${sessionUser && sessionUser.id}`}>
+            <DrinkPage type='user' userId={sessionUser && sessionUser.id} />
           </Route>
         </Switch>
 

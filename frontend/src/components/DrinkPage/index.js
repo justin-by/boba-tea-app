@@ -4,17 +4,18 @@ import * as reviewActions from "../../store/reviews";
 
 import { useDispatch, useSelector } from "react-redux";
 
-const DrinkPage = () => {
-    const dispatch = useDispatch();
-    dispatch(reviewActions.getReviews());
-    const reviews = useSelector((state) => state.session.reviews);
+const DrinkPage = ({ type, userId }) => {
+  const dispatch = useDispatch();
+  dispatch(reviewActions.getReviews());
+  const reviews = useSelector((state) => state.session.reviews);
+  const sessionUser = useSelector((state) => state.session.user);
 
-    return (
+  return (
     <div>
-        <DrinksContainer reviews={reviews}/>
-        <AddDrinkButton />
+      <DrinksContainer type={type} userId={userId} reviews={reviews} />
+      {sessionUser && <AddDrinkButton />}
     </div>
-    )
-}
+  );
+};
 
 export default DrinkPage;

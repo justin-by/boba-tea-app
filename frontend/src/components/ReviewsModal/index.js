@@ -17,7 +17,7 @@ const ReviewsModal = ({ drinkId }) => {
     if (comment.length > 200) errors.push("Review must be less than 200 characters");
     if (rating < 1 || rating > 5) errors.push("Rating must be 1 - 5")
     setErrors(errors);
-  }, [comment]);
+  }, [comment, rating]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
