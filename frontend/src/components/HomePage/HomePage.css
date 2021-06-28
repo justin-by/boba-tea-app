@@ -1,0 +1,59 @@
+.slider {
+  border: 1px solid black;
+  width: 300px;
+  height: 450px;
+  margin: 100px auto;
+  animation: slide 20s infinite;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("https://image.freepik.com/free-photo/bubble-tea-also-known-as-pearl-milk-tea-bubble-milk-tea-boba-tea-with-bubbles_1339-99421.jpg");
+}
+
+.welcome-img {
+  margin-left: 70px;
+}
+
+.kaboba-img {
+    margin-left: 1350px;
+    margin-top: -500px;
+}
+
+.slider-container {
+  border-radius: 30px;
+  display: flex;
+  width: 18vw;
+  height: 50vh;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.slider-side-background {
+  border-top: 4px solid white;
+  border-bottom: 4px solid white;
+  width: 100vw;
+  height: 30vh;
+  background-color: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@keyframes slide {
+  25% {
+    background-image: url("https://image.freepik.com/free-photo/bubble-tea-also-known-as-pearl-milk-tea-bubble-milk-tea-boba-tea-with-bubbles_1339-99421.jpg");
+  }
+  50% {
+    background-image: url("https://image.freepik.com/free-photo/green-tea-latte-with-bubble_1339-99943.jpg");
+  }
+  75% {
+    background-image: url("https://image.freepik.com/free-photo/traditional-iced-milk-tea-red-tea-powder_1150-26447.jpg");
+  }
+  100% {
+    background-image: url("https://i.redd.it/tk1d6xp7wmb11.jpg");
+  }
+}

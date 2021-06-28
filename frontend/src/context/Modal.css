@@ -1,5 +1,6 @@
 #modal {
     position: fixed;
+    z-index: 200;
     top: 0;
     right: 0;
     left: 0;
@@ -23,4 +24,14 @@
     width: 70vw;
     position: absolute;
     background-color:white;
+  }
+
+  #modal-content-small {
+    height: 30vh;
+    width: 40vw;
+    position: absolute;
+    background-color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }

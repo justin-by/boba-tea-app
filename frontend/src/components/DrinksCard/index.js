@@ -44,7 +44,7 @@ const DrinksCard = ({ name, imageUrl, description, drinkId, userId}) => {
             <i className="fas fa-cog group2"></i>
           </button>
           {showModal && (
-            <Modal onClose={() => setShowModal(false)}>
+            <Modal type='small' onClose={() => setShowModal(false)}>
               <AddDrinkForm setShowModal={setShowModal} type="update" drinkId={drinkId} />
             </Modal>
           )}

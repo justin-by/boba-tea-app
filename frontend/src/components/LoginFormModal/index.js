@@ -9,7 +9,7 @@ function LoginFormModal() {
     <>
       <span className='login_span' onClick={() => setShowModal(true)}>Log In</span>
       {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
+        <Modal type='small' onClose={() => setShowModal(false)}>
           <LoginForm />
         </Modal>
       )}

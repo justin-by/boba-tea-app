@@ -9,7 +9,7 @@ header {
 
 .nav_bar {
     width: 100vw;
-    background-color: rgba(182, 182, 182);
+    background: linear-gradient(0deg, rgba(87,87,87,1) 0%, rgba(63,80,86,1) 78%);
     position: fixed;
     top: 0;
     z-index: 1;
@@ -51,6 +51,7 @@ header {
 
 .nav_ele {
     margin-right: 20px;
+    color: black;
 }
 
 .profile_button {

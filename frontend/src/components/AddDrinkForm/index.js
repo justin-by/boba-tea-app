@@ -49,12 +49,11 @@ const AddDrinkForm = ({ type, drinkId, setShowModal }) => {
       const newDrink = dispatch(drinkActions.createDrink(drinkPayload));
       if (newDrink) setShowModal(false);
     }
-
-
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+
+    <form className='create_form' onSubmit={handleSubmit}>
       <ul>
         {errors.length !== 0 &&
           errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -78,9 +77,15 @@ const AddDrinkForm = ({ type, drinkId, setShowModal }) => {
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
-      <button disabled={errors.length === 0 ? false : true} type="submit">
-        Create Drink
-      </button>
+      {type === "update" ? (
+        <button className='drink_button' disabled={errors.length === 0 ? false : true} type="submit">
+          Update Drink
+        </button>
+      ) : (
+        <button className='drink_button' disabled={errors.length === 0 ? false : true} type="submit">
+          Create Drink
+        </button>
+      )}
     </form>
   );
 };

@@ -11,7 +11,7 @@ const AddDrinkButton = () => {
         <div>
             <i className="fas fa-plus-circle" onClick={() => setShowModal(true)}></i>
             {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
+                <Modal type='small' onClose={() => setShowModal(false)}>
                     <AddDrinkForm setShowModal={setShowModal} type='create' />
                 </Modal>
             )}
