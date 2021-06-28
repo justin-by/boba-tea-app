@@ -10,11 +10,11 @@
 }
 
 .welcome-img {
-  margin-left: 70px;
+  margin-left: 120px;
 }
 
 .kaboba-img {
-    margin-left: 1350px;
+    margin-left: 1300px;
     margin-top: -500px;
 }
 
@@ -22,7 +22,7 @@
   border-radius: 30px;
   display: flex;
   width: 18vw;
-  height: 50vh;
+  height: 52vh;
   justify-content: center;
   align-items: center;
   background-color: white;

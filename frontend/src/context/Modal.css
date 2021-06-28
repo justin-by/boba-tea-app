@@ -27,8 +27,8 @@
   }
 
   #modal-content-small {
-    height: 30vh;
-    width: 40vw;
+    height: 25vh;
+    width: 25vw;
     position: absolute;
     background-color:white;
     display: flex;

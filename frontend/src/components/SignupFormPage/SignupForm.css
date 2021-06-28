@@ -25,6 +25,7 @@
     padding: 2px;
     margin-top: 10px;
     width: 200px;
+    background: lightgray;
 }
 
 /* .signup-form-center-div {
@@ -33,9 +34,10 @@
 
 
 .signup-form-background {
+    border-radius: 45px;
     display: flex;
     width: 20vw;
-    height: 50vh;
+    height: 45vh;
     justify-content: center;
     align-items: center;
     background-color: white;
